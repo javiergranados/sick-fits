@@ -1,13 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Home() {
+const Home = () => {
   return (
     <>
-      <p>Hi from home</p>
-      <Link href="/page">
-        <a>Go to page</a>
+      <p>You're in home page</p>
+      <Link href="/sell">
+        <a>Go to sell page</a>
       </Link>
     </>
   );
-}
+};
+
+export default Home;

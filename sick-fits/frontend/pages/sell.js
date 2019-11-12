@@ -1,13 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Page() {
+const Sell = () => {
   return (
     <>
-      <p>Hi from page</p>
+      <p>You're in sell page</p>
       <Link href="/">
-        <a>Go to home</a>
+        <a>Go to home page</a>
       </Link>
     </>
   );
-}
+};
+
+export default Sell;
