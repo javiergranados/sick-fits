@@ -11,6 +11,8 @@
         "extensions": [".js", "jsx"]
       }
     ],
+    "react/no-array-index-key": 1,
+    "react/forbid-prop-types": 0,
     "max-len": [2, 120],
     "no-unused-vars": 1,
     "quotes": [
