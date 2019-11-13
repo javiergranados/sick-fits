@@ -3,14 +3,10 @@ import Link from 'next/link';
 const Nav = () => (
   <>
     <Link href="/">
-      <a>
-        <p>Go to home page</p>
-      </a>
+      <a>Go to home page</a>
     </Link>
     <Link href="/sell">
-      <a>
-        <p>Go to sell page</p>
-      </a>
+      <a>Go to sell page</a>
     </Link>
   </>
 );
