@@ -44,11 +44,11 @@ const Header = () => {
   return (
     <StyledHeader>
       <div className="bar">
-        <Link href="/">
-          <StyledLogo>
+        <StyledLogo>
+          <Link href="/">
             <a>Sick Fits</a>
-          </StyledLogo>
-        </Link>
+          </Link>
+        </StyledLogo>
         <Nav />
       </div>
       <div className="sub-bar">
