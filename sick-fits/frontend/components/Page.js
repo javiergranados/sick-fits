@@ -1,19 +1,19 @@
 import { ThemeProvider } from 'styled-components';
 import Header from './Header';
 import Meta from './Meta';
-import './styles/StyledGlobal';
-import theme from './styles/Page/theme';
-import StyledPage from './styles/Page/StyledPage';
-import StyledInner from './styles/Page/StyledInner';
+import './styles/GlobalStyles';
+import theme from './themes/theme';
+import PageStyles from './styles/PageStyles';
+import InnerStyles from './styles/InnerStyles';
 
 const Page = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <StyledPage>
+      <PageStyles>
         <Meta />
         <Header />
-        <StyledInner>{children}</StyledInner>
-      </StyledPage>
+        <InnerStyles>{children}</InnerStyles>
+      </PageStyles>
     </ThemeProvider>
   );
 };

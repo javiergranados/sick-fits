@@ -1,7 +1,7 @@
 import { injectGlobal } from 'styled-components';
-import theme from './Page/theme';
+import theme from '../themes/theme';
 
-const StyledGlobal = injectGlobal`
+const GlobalStyles = injectGlobal`
   @font-face {
     font-family: 'radnika_next';
     src: url('/static/radnikanext-medium-webfont.woff2')
@@ -29,4 +29,4 @@ const StyledGlobal = injectGlobal`
   }
 `;
 
-export default StyledGlobal;
+export default GlobalStyles;

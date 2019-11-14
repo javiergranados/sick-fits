@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const StyledInner = styled.div`
+const InnerStyles = styled.div`
   padding: 2rem;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.maxWidth};
 `;
 
-export default StyledInner;
+export default InnerStyles;

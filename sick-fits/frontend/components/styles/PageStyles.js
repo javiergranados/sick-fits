@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const StyledPage = styled.div`
+const PageStyles = styled.div`
   background: white;
   color: ${({ theme }) => theme.black};
 `;
 
-export default StyledPage;
+export default PageStyles;
