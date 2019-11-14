@@ -33,6 +33,7 @@
         "allowTemplateLiterals": true
       }
     ],
+    "jsx-a11y/html-has-lang": 0,
     "jsx-a11y/anchor-is-valid": [
       1,
       {
