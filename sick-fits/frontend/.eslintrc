@@ -19,6 +19,12 @@
     "react/react-in-jsx-scope": 0,
     "max-len": [2, 120],
     "no-unused-vars": 2,
+    "no-unused-expressions": [
+      2,
+      {
+        "allowTaggedTemplates": true
+      }
+    ],
     "quotes": [
       2,
       "single",

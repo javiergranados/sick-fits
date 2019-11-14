@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import Header from './Header';
 import Meta from './Meta';
+import './styles/StyledGlobal';
 import theme from './styles/Page/theme';
 import StyledPage from './styles/Page/StyledPage';
 import StyledInner from './styles/Page/StyledInner';
