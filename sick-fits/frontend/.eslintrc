@@ -40,6 +40,7 @@
         "aspects": ["invalidHref"]
       }
     ],
+    "jsx-a11y/accessible-emoji": 0,
     "import/prefer-default-export": 0,
     "prettier/prettier": [
       "error",
