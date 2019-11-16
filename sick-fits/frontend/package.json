@@ -4,12 +4,12 @@
   "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 7777",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next ./src -p 7777",
+    "build": "next ./src build",
+    "start": "next ./src start",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
-    "heroku-postbuild": "next build",
+    "heroku-postbuild": "next ./src build",
     "lint": "eslint . --ext .jsx,.js --ignore-pattern '.next/' --ignore-pattern '.vscode/' --ignore-pattern 'node_modules/'",
     "lint-fix": "eslint . --fix --ext .jsx,.js --ignore-pattern '.next/' --ignore-pattern '.vscode/' --ignore-pattern 'node_modules/'"
   },

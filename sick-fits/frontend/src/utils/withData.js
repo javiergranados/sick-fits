@@ -4,7 +4,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
-import { endpoint } from '../config';
+import { endpoint } from '../../config';
 
 function createClient({ headers }) {
   return new ApolloClient({
