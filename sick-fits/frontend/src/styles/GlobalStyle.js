@@ -1,9 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
-import { fontFaces } from './fonts';
 
 const GlobalStyle = createGlobalStyle`
-  ${fontFaces}
+  @font-face {
+    font-family: 'radnika_next';
+    src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: auto;
+  }
   html {
     box-sizing: border-box;
     font-size: 10px;
