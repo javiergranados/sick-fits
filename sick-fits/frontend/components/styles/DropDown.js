@@ -31,7 +31,7 @@ const glow = keyframes`
   }
 `;
 
-const SearchStyles = styled.div`
+const Search = styled.div`
   position: relative;
   input {
     width: 100%;
@@ -44,4 +44,4 @@ const SearchStyles = styled.div`
   }
 `;
 
-export { DropDown, DropDownItem, SearchStyles };
+export { DropDown, DropDownItem, Search };

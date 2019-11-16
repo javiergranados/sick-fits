@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CartStyles = styled.div`
+const Cart = styled.div`
   padding: 20px;
   position: relative;
   background: white;
@@ -44,4 +44,4 @@ const CartStyles = styled.div`
   }
 `;
 
-export default CartStyles;
+export { Cart };

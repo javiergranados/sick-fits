@@ -28,4 +28,4 @@ const Table = styled.table`
   }
 `;
 
-export default Table;
+export { Table };

@@ -10,4 +10,4 @@ const Supreme = styled.h3`
   font-size: 4rem;
 `;
 
-export default Supreme;
+export { Supreme };

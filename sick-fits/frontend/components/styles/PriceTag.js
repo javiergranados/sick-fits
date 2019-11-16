@@ -14,4 +14,4 @@ const PriceTag = styled.span`
   right: -3px;
 `;
 
-export default PriceTag;
+export { PriceTag };

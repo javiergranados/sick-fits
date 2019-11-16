@@ -36,4 +36,4 @@ const Item = styled.div`
   }
 `;
 
-export default Item;
+export { Item };
