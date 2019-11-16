@@ -1,8 +1,8 @@
 import { ThemeProvider } from 'styled-components';
 import Header from './Header';
 import Meta from './Meta';
-import GlobalStyle from '../assets/GlobalStyle';
-import theme from '../assets/theme';
+import GlobalStyle from '../styles/GlobalStyle';
+import theme from '../styles/theme';
 import * as S from './styles/Page';
 
 const Page = ({ children }) => {

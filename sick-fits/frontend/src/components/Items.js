@@ -1,21 +1,7 @@
-import React from 'react';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import * as S from './styles/Items';
 import Item from './Item';
-
-const GET_ITEMS = gql`
-  {
-    items {
-      id
-      title
-      price
-      description
-      image
-      largeImage
-    }
-  }
-`;
+import { GET_ITEMS } from '../graphql/queries';
 
 const Items = () => {
   const { loading, error, data } = useQuery(GET_ITEMS);
