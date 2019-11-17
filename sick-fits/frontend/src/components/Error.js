@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import * as S from './styles/Error';
 
-const DisplayError = ({ error }) => {
+const Error = ({ error }) => {
   if (!error || !error.message) return null;
   if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
     return error.networkError.result.errors.map(({ message }, i) => (
@@ -23,12 +23,12 @@ const DisplayError = ({ error }) => {
   );
 };
 
-DisplayError.defaultProps = {
+Error.defaultProps = {
   error: {},
 };
 
-DisplayError.propTypes = {
+Error.propTypes = {
   error: PropTypes.object,
 };
 
-export default DisplayError;
+export default Error;
