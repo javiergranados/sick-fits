@@ -2,10 +2,7 @@ node_modules/
 .DS_Store
 *.log
 haters/
-<<<<<<< HEAD
-=======
 .next/
 .build/
 layout.md
 .env
->>>>>>> d0db1eb... Rename file
