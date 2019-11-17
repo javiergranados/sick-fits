@@ -1,19 +1,31 @@
+import { useMutation } from '@apollo/react-hooks';
+import Router from 'next/router';
 import { useInput } from '../hooks/useInput';
 import * as S from './styles/Form';
+import Error from './Error';
+import { CREATE_ITEM } from '../graphql/mutations';
 
-const createItem = () => {
+const CreateItem = () => {
   const [title, setTitle] = useInput('');
   const [price, setPrice] = useInput(0);
   const [description, setDescription] = useInput('');
 
-  const handleSubmit = event => {
+  const [createItem, { loading, error }] = useMutation(CREATE_ITEM);
+
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log(event);
+    const { data } = await createItem({ variables: { title, price, description } });
+
+    Router.push({
+      pathname: '/item',
+      query: { id: data.createItem.id },
+    });
   };
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      <fieldset>
+      <Error error={error} />
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="title">
           Title
           <input type="text" name="title" placeholder="Title" required value={title} onChange={setTitle} />
@@ -38,4 +50,4 @@ const createItem = () => {
   );
 };
 
-export default createItem;
+export default CreateItem;
