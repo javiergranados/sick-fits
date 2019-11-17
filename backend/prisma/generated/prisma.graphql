@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/jvgranados/sick-fits/dev
-# timestamp: Sun Nov 17 2019 06:14:50 GMT+0100 (Central European Standard Time)
+# timestamp: Sun Nov 17 2019 14:30:56 GMT+0100 (Central European Standard Time)
 
 type AggregateItem {
   count: Int!
