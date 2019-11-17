@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import * as S from './styles/Items';
 import Item from './Item';
-import { GET_ITEMS } from '../graphql/queries';
+import { GET_ITEMS } from '../graphql/query';
 
 const Items = () => {
   const { loading, error, data } = useQuery(GET_ITEMS);

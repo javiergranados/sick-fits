@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useInput } from '../hooks/useInput';
 import * as S from './styles/Form';
 import Error from './Error';
-import { CREATE_ITEM } from '../graphql/mutations';
+import { CREATE_ITEM } from '../graphql/mutation';
 
 const CreateItem = () => {
   const [title, setTitle] = useInput('');
