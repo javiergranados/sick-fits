@@ -13,4 +13,15 @@ const GET_ITEMS = gql`
   }
 `;
 
-export { GET_ITEMS };
+const GET_ITEM = gql`
+  query Dog($id: ID!) {
+    item(where: { id: $id }) {
+      id
+      title
+      description
+      price
+    }
+  }
+`;
+
+export { GET_ITEMS, GET_ITEM };

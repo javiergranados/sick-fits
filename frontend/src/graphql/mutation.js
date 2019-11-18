@@ -8,4 +8,15 @@ const CREATE_ITEM = gql`
   }
 `;
 
-export { CREATE_ITEM };
+const UPDATE_ITEM = gql`
+  mutation updateItem($id: ID!, $title: String, $description: String, $price: Int) {
+    updateItem(id: $id, title: $title, description: $description, price: $price) {
+      id
+      title
+      description
+      price
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM };
