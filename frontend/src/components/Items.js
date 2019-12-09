@@ -6,7 +6,7 @@ import { GET_ITEMS } from '../graphql/query';
 const Items = () => {
   const { loading, error, data } = useQuery(GET_ITEMS);
 
-  if (loading) return <p>"Loading..."</p>;
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>{`Error: ${{ error }}`}</p>;
 
   return (
