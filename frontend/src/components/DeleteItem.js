@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 import { useMutation } from '@apollo/react-hooks';
 import { DELETE_ITEM } from '../graphql/mutation';
 import { GET_ITEMS } from '../graphql/query';
@@ -20,8 +21,14 @@ const CreateItem = ({ children, id }) => {
       const variables = {
         id,
       };
-      const res = await deleteItem({ variables });
-      console.log(res);
+      const { data } = await deleteItem({ variables });
+
+      swal({
+        icon: 'success',
+        title: 'Good job!',
+        text: `You delete ${data.deleteItem.title}`,
+        closeOnClickOutside: false,
+      });
     }
   };
 

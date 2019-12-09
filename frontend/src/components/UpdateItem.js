@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import swal from 'sweetalert';
 import { useInput } from '../hooks/useInput';
 import * as S from './styles/Form';
 import Error from './Error';
@@ -24,8 +25,14 @@ const UpdateItem = ({ id }) => {
       ...(description && { description }),
       ...(price && { price }),
     };
-    const res = await updateItem({ variables });
-    console.log(res);
+    const { data: response } = await updateItem({ variables });
+
+    swal({
+      icon: 'success',
+      title: 'Good job!',
+      text: `You update ${response.updateItem.title}`,
+      closeOnClickOutside: false,
+    });
   };
 
   if (loadingQuery) return <p>Loading...</p>;

@@ -43,6 +43,7 @@
     "react-stripe-checkout": "^2.6.3",
     "react-transition-group": "^2.5.0",
     "styled-components": "^4.4.1",
+    "sweetalert": "^2.1.2",
     "waait": "^1.0.2"
   },
   "devDependencies": {
