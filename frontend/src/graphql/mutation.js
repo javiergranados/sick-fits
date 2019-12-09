@@ -19,4 +19,12 @@ const UPDATE_ITEM = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM };
+const DELETE_ITEM = gql`
+  mutation deleteItem($id: ID!) {
+    deleteItem(id: $id) {
+      id
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM };

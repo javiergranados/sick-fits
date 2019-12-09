@@ -19,6 +19,8 @@
     "react/react-in-jsx-scope": 0,
     "max-len": [2, 120],
     "no-unused-vars": 2,
+    "no-alert": 0,
+    "no-restricted-globals": 0,
     "no-unused-expressions": [
       2,
       {

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import DeleteItem from './DeleteItem';
 import * as S from './styles/Item';
 import formatMoney from '../utils/formatMoney';
 
@@ -29,7 +30,7 @@ const Item = ({ item }) => (
         <a>Edit ✏️</a>
       </Link>
       <button type="button">Add to Cart</button>
-      <button type="button">Delete</button>
+      <DeleteItem id={item.id}>Delete This Item</DeleteItem>
     </div>
   </S.Item>
 );

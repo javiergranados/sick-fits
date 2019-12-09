@@ -29,6 +29,7 @@ const Item = styled.div`
     grid-gap: 1px;
     background: ${({ theme }) => theme.lightGrey};
     & > * {
+      cursor: pointer;
       background: white;
       border: 0;
       font-size: 1rem;
