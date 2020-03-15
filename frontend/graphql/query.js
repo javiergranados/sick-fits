@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
+import { perPage } from '../config';
 
 const GET_ITEMS = gql`
-  {
-    items {
+  query($skip: Int = 0, $first: Int = ${perPage}) {
+    items(skip: $skip, first: $first, orderBy: createdAt_DESC) {
       id
       title
       price
