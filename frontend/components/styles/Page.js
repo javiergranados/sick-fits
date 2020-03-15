@@ -6,6 +6,8 @@ const Page = styled.div`
 `;
 
 const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.maxWidth};

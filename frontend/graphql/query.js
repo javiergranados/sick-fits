@@ -25,4 +25,14 @@ const GET_ITEM = gql`
   }
 `;
 
-export { GET_ITEMS, GET_ITEM };
+const PAGINATION = gql`
+  {
+    itemsConnection {
+      aggregate {
+        count
+      }
+    }
+  }
+`;
+
+export { GET_ITEMS, GET_ITEM, PAGINATION };

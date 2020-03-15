@@ -4,7 +4,7 @@ import Item from './Item';
 import Pagination from './Pagination';
 import { GET_ITEMS } from '../graphql/query';
 
-const Items = () => {
+const Items = ({ page }) => {
   const { loading, error, data } = useQuery(GET_ITEMS);
 
   if (loading) return <p>Loading...</p>;
@@ -12,13 +12,13 @@ const Items = () => {
 
   return (
     <>
-      <Pagination />
+      <Pagination page={page} />
       <S.ItemsList>
         {data.items.map(item => (
           <Item key={item.id} item={item} />
         ))}
       </S.ItemsList>
-      <Pagination />
+      <Pagination page={page} />
     </>
   );
 };

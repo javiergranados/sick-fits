@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const Pagination = styled.div`
+  width: fit-content;
+  align-self: center;
   text-align: center;
   display: inline-grid;
   grid-template-columns: repeat(4, auto);
