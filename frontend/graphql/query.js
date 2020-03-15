@@ -14,7 +14,7 @@ const GET_ITEMS = gql`
 `;
 
 const GET_ITEM = gql`
-  query Dog($id: ID!) {
+  query($id: ID!) {
     item(where: { id: $id }) {
       id
       title
