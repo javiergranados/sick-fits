@@ -28,4 +28,14 @@ const DELETE_ITEM = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM };
+const SIGN_UP = gql`
+  mutation updateItem($email: String!, $name: String!, $password: String!) {
+    signup(email: $email, name: $name, password: $password) {
+      id
+      email
+      name
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP };
