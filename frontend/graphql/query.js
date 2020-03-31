@@ -36,4 +36,15 @@ const PAGINATION = gql`
   }
 `;
 
-export { GET_ITEMS, GET_ITEM, PAGINATION };
+const CURRENT_USER = gql`
+  {
+    me {
+      id
+      name
+      email
+      permissions
+    }
+  }
+`;
+
+export { GET_ITEMS, GET_ITEM, PAGINATION, CURRENT_USER };

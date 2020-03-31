@@ -14,9 +14,8 @@ const Signup = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    const { data } = await signUp({ variables: values });
+    await signUp({ variables: values });
     setValues({ email: '', name: '', password: '' });
-    console.log('data', data);
   };
 
   return (

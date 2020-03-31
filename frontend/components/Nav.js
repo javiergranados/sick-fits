@@ -1,8 +1,21 @@
 import Link from 'next/link';
+import User from './User';
 import * as S from './styles/Nav';
 
 const Nav = () => (
   <S.Nav>
+    <User>
+      {data => {
+        return (
+          (data && data.me && (
+            <Link href="/me">
+              <a>{data.me.name}</a>
+            </Link>
+          )) ||
+          null
+        );
+      }}
+    </User>
     <Link href="/items">
       <a>Shop</a>
     </Link>
