@@ -6,7 +6,7 @@ import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { endpoint } from '../config';
 
-function createClient({ headers }) {
+function createClient() {
   return new ApolloClient({
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
@@ -22,14 +22,7 @@ function createClient({ headers }) {
       }),
       new HttpLink({
         uri: process.env.NODE_ENV === 'development' ? endpoint : endpoint,
-        request: operation => {
-          operation.setContext({
-            fetchOptions: {
-              credentials: 'include',
-            },
-            headers,
-          });
-        },
+        credentials: 'include',
       }),
     ]),
     cache: new InMemoryCache(),
