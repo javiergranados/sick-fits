@@ -29,7 +29,7 @@ const DELETE_ITEM = gql`
 `;
 
 const SIGN_UP = gql`
-  mutation updateItem($email: String!, $name: String!, $password: String!) {
+  mutation signup($email: String!, $name: String!, $password: String!) {
     signup(email: $email, name: $name, password: $password) {
       id
       email
@@ -38,4 +38,15 @@ const SIGN_UP = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP };
+const SIGN_IN = gql`
+  mutation signin($email: String!, $password: String!) {
+    signin(email: $email, password: $password) {
+      id
+      email
+      name
+      password
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN };
