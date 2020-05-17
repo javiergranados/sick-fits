@@ -49,4 +49,12 @@ const SIGN_IN = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN };
+const SIGN_OUT = gql`
+  mutation signout {
+    signout {
+      message
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN, SIGN_OUT };

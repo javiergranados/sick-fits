@@ -13,11 +13,13 @@ const Nav = styled.ul`
     align-items: center;
     position: relative;
     text-transform: uppercase;
-    font-weight: 900;
     font-size: 1em;
     background: none;
     border: 0;
     cursor: pointer;
+    font-weight: 800;
+    font-family: 'radnika_next';
+    color: ${({ theme }) => theme.black};
     @media (max-width: 700px) {
       font-size: 10px;
       padding: 0 10px;

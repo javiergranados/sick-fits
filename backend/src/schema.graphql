@@ -1,5 +1,9 @@
 #import * from '../prisma/generated/prisma.graphql'
 
+type SuccessMessage {
+  message: String
+}
+
 type Query {
   items(
     where: ItemWhereInput
@@ -24,4 +28,5 @@ type Mutation {
   deleteItem(id: ID!): Item
   signup(email: String!, password: String!, name: String!): User!
   signin(email: String!, password: String!): User!
+  signout: SuccessMessage
 }
