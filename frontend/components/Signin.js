@@ -3,11 +3,12 @@ import { useState } from 'react';
 import * as S from './styles/Form';
 import Error from './Error';
 import { SIGN_IN } from '../graphql/mutation';
+import { CURRENT_USER } from '../graphql/query';
 
 const Signin = () => {
   const [values, setValues] = useState({ email: '', password: '' });
 
-  const [signIn, { loading, error }] = useMutation(SIGN_IN);
+  const [signIn, { loading, error }] = useMutation(SIGN_IN, { refetchQueries: [{ query: CURRENT_USER }] });
 
   const handleChange = ({ target: { name, value } }) => setValues({ ...values, [name]: value });
 
