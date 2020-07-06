@@ -1,8 +1,7 @@
 node_modules/
 .DS_Store
+.vscode/
 *.log
-haters/
 .next/
 .build/
-layout.md
 .env
