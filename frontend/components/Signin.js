@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/react-hooks';
 import { useState } from 'react';
 import * as S from './styles/Form';
@@ -6,6 +7,7 @@ import { SIGN_IN } from '../graphql/mutation';
 import { CURRENT_USER } from '../graphql/query';
 
 const Signin = () => {
+  const router = useRouter();
   const [values, setValues] = useState({ email: '', password: '' });
 
   const [signIn, { loading, error }] = useMutation(SIGN_IN, { refetchQueries: [{ query: CURRENT_USER }] });
@@ -14,8 +16,13 @@ const Signin = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    await signIn({ variables: values });
-    setValues({ email: '', password: '' });
+    try {
+      await signIn({ variables: values });
+      setValues({ email: '', password: '' });
+      router.push('/');
+    } catch (err) {
+      // do nothing
+    }
   };
 
   return (
