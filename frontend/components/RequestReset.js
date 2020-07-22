@@ -7,14 +7,14 @@ import { REQUEST_RESET } from '../graphql/mutation';
 const RequestReset = () => {
   const [email, setEmail] = useState('');
 
-  const [reset, { loading, error, called }] = useMutation(REQUEST_RESET);
+  const [requestReset, { loading, error, called }] = useMutation(REQUEST_RESET);
 
   const handleChange = ({ target }) => setEmail(target.value);
 
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      const me = await reset({ variables: { email } });
+      await requestReset({ variables: { email } });
       setEmail('');
     } catch (err) {
       // do nothing

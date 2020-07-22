@@ -65,4 +65,14 @@ const REQUEST_RESET = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN, SIGN_OUT, REQUEST_RESET };
+const RESET_PASSWORD = gql`
+  mutation resetPassword($resetToken: String!, $password: String!, $confirmPassword: String!) {
+    resetPassword(resetToken: $resetToken, password: $password, confirmPassword: $confirmPassword) {
+      id
+      email
+      name
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN, SIGN_OUT, REQUEST_RESET, RESET_PASSWORD };
