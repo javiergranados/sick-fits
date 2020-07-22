@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/react-hooks';
 import { useState } from 'react';
 import * as S from './styles/Form';
@@ -6,6 +7,7 @@ import { SIGN_UP } from '../graphql/mutation';
 import { CURRENT_USER } from '../graphql/query';
 
 const Signup = () => {
+  const router = useRouter();
   const [values, setValues] = useState({ email: '', name: '', password: '' });
 
   const [signUp, { loading, error }] = useMutation(SIGN_UP, { refetchQueries: [{ query: CURRENT_USER }] });
@@ -16,6 +18,7 @@ const Signup = () => {
     event.preventDefault();
     await signUp({ variables: values });
     setValues({ email: '', name: '', password: '' });
+    router.push('/');
   };
 
   return (
