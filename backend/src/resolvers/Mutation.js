@@ -101,15 +101,14 @@ const Mutations = {
     const randomBytesPromiseified = promisify(randomBytes);
     const resetToken = (await randomBytesPromiseified(20)).toString('hex');
     const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
-    const res = await ctx.db.mutation.updateUser({
+    await ctx.db.mutation.updateUser({
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry },
     });
-    console.log(res);
     return { message: 'Thanks!' };
     // 3. Email them that reset token
   },
-  async resetPassword(parent, args, ctx, info) {
+  async resetPassword(parent, args, ctx) {
     // 1. Check if the passwords match
     if (args.password !== args.confirmPassword) {
       throw new Error("Your passwords don't match!");
