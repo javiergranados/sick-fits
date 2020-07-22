@@ -57,4 +57,12 @@ const SIGN_OUT = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN, SIGN_OUT };
+const REQUEST_RESET = gql`
+  mutation requestReset($email: String!) {
+    requestReset(email: $email) {
+      message
+    }
+  }
+`;
+
+export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN, SIGN_OUT, REQUEST_RESET };
