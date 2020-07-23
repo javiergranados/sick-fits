@@ -6,15 +6,26 @@ const { transport, makeANiceEmail } = require('../../mail');
 
 const Mutations = {
   async createItem(parent, args, ctx, info) {
-    // TODO: Check if they are logged in
+    // Check if they are logged in
+    if (!ctx.request.userId) {
+      throw new Error('You must be logged in to do that!');
+    }
+
     const item = await ctx.db.mutation.createItem({
       data: {
+        // this is how to create a relationship between the Item and the User
+        user: {
+          connect: {
+            id: ctx.request.userId,
+          },
+        },
         ...args,
       },
       info,
     });
     return item;
   },
+
   updateItem(parent, args, ctx, info) {
     // take a copy of the data and remove the id
     const data = { ...args };
@@ -30,6 +41,7 @@ const Mutations = {
       info
     );
   },
+
   async deleteItem(parent, args, ctx, info) {
     const where = { id: args.id };
     // 1 - find the item
@@ -41,6 +53,7 @@ const Mutations = {
     // 3 - Delete it
     return ctx.db.mutation.deleteItem({ where }, info);
   },
+
   async signup(parent, args, ctx, info) {
     // create the data with the hash as password
     const data = { ...args };
@@ -68,6 +81,7 @@ const Mutations = {
     // finally we return the user to the browser
     return user;
   },
+
   async signin(parent, args, ctx, info) {
     // 1- check if there is a user with that email
     const user = await ctx.db.query.user(
@@ -98,10 +112,12 @@ const Mutations = {
     // 5- Return the user
     return user;
   },
+
   signout(parent, args, ctx) {
     ctx.response.clearCookie('token');
     return { message: 'Goodbye!' };
   },
+
   async requestReset(parent, args, ctx) {
     // 1. Check if this is a real user
     const user = await ctx.db.query.user({ where: { email: args.email } });
@@ -133,6 +149,7 @@ const Mutations = {
     // 4 Return the message
     return { message: 'Thanks!' };
   },
+
   async resetPassword(parent, args, ctx) {
     // 1. Check if the passwords match
     if (args.password !== args.confirmPassword) {
