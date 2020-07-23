@@ -17,12 +17,15 @@ const CreateItem = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    const { data } = await createItem({ variables: { title, price, description, image, largeImage } });
-
-    Router.push({
-      pathname: '/item',
-      query: { id: data.createItem.id },
-    });
+    try {
+      const { data } = await createItem({ variables: { title, price, description, image, largeImage } });
+      Router.push({
+        pathname: '/item',
+        query: { id: data.createItem.id },
+      });
+    } catch (err) {
+      // do nothing
+    }
   };
 
   const uploadFile = async ({ target }) => {

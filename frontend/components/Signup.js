@@ -16,9 +16,13 @@ const Signup = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    await signUp({ variables: values });
-    setValues({ email: '', name: '', password: '' });
-    router.push('/');
+    try {
+      await signUp({ variables: values });
+      setValues({ email: '', name: '', password: '' });
+      router.push('/');
+    } catch (err) {
+      // do nothing
+    }
   };
 
   return (

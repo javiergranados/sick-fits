@@ -25,14 +25,17 @@ const UpdateItem = ({ id }) => {
       ...(description && { description }),
       ...(price && { price }),
     };
-    const { data: response } = await updateItem({ variables });
-
-    swal({
-      icon: 'success',
-      title: 'Good job!',
-      text: `You update ${response.updateItem.title}`,
-      closeOnClickOutside: false,
-    });
+    try {
+      const { data: response } = await updateItem({ variables });
+      swal({
+        icon: 'success',
+        title: 'Good job!',
+        text: `You update ${response.updateItem.title}`,
+        closeOnClickOutside: false,
+      });
+    } catch (err) {
+      // do nothing
+    }
   };
 
   if (loadingQuery) return <p>Loading...</p>;

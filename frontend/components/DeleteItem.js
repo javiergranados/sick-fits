@@ -21,14 +21,17 @@ const CreateItem = ({ children, id }) => {
       const variables = {
         id,
       };
-      const { data } = await deleteItem({ variables });
-
-      swal({
-        icon: 'success',
-        title: 'Good job!',
-        text: `You delete ${data.deleteItem.title}`,
-        closeOnClickOutside: false,
-      });
+      try {
+        const { data } = await deleteItem({ variables });
+        swal({
+          icon: 'success',
+          title: 'Good job!',
+          text: `You delete ${data.deleteItem.title}`,
+          closeOnClickOutside: false,
+        });
+      } catch (err) {
+        // do nothing
+      }
     }
   };
 
