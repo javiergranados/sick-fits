@@ -47,4 +47,15 @@ const CURRENT_USER = gql`
   }
 `;
 
-export { GET_ITEMS, GET_ITEM, PAGINATION, CURRENT_USER };
+const GET_ALL_USERS = gql`
+  {
+    users {
+      id
+      name
+      email
+      permissions
+    }
+  }
+`;
+
+export { GET_ITEMS, GET_ITEM, PAGINATION, CURRENT_USER, GET_ALL_USERS };
