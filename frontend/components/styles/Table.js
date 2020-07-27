@@ -20,6 +20,9 @@ const Table = styled.table`
         width: 100%;
       }
     }
+    label {
+      display: block;
+    }
   }
   tr {
     &:hover {

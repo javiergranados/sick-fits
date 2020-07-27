@@ -20,11 +20,12 @@ const UserPermissions = ({ user }) => {
       <td>{user.email}</td>
       {permissions.map(permission => (
         <td key={permission}>
-          <label htmlFor={permission}>
+          <label htmlFor={`${user.id}-permission-${permission}`}>
             <input
               type="checkbox"
               value={permission}
               onChange={handleChange}
+              id={`${user.id}-permission-${permission}`}
               checked={userPermissions.includes(permission)}
             />
           </label>
