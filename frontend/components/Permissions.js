@@ -1,10 +1,9 @@
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ALL_USERS } from '../graphql/query';
 import Error from './Error';
+import { permissions } from '../constants';
 import { Table } from './styles/Table';
-import { SickButton } from './styles/SickButton';
-
-const permissions = ['ADMIN', 'USER', 'ITEMCREATE', 'ITEMUPDATE', 'ITEMDELETE', 'PERMISSIONUPDATE'];
+import UserPermissions from './UserPermissions';
 
 const Permissions = () => {
   const { data, loading, error } = useQuery(GET_ALL_USERS);
@@ -31,20 +30,7 @@ const Permissions = () => {
             </thead>
             <tbody>
               {data.users.map(user => (
-                <tr key={user.id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  {permissions.map(permission => (
-                    <td key={permission}>
-                      <label htmlFor={`${user.id}-permission-${permission}`}>
-                        <input type="checkbox" checked={user.permissions.includes(permission)} />
-                      </label>
-                    </td>
-                  ))}
-                  <td>
-                    <SickButton>UPDATE</SickButton>
-                  </td>
-                </tr>
+                <UserPermissions user={user} key={user.id} />
               ))}
             </tbody>
           </Table>
