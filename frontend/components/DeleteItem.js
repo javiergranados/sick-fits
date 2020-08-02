@@ -30,7 +30,7 @@ const CreateItem = ({ children, id }) => {
           closeOnClickOutside: false,
         });
       } catch (err) {
-        // do nothing
+        alert(err);
       }
     }
   };
