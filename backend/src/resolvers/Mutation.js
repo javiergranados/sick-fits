@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { transport, makeANiceEmail } = require('../../mail');
+const { hasPermissions } = require('../utils');
 
 const Mutations = {
   async createItem(parent, args, ctx, info) {
@@ -44,13 +45,13 @@ const Mutations = {
 
   async deleteItem(parent, args, ctx, info) {
     const where = { id: args.id };
-    // 1 - find the item
-
+    // 1. find the item
     // const item = await ctx.db.query.item({ where }, info);
-    // 2 - Check if they own that item, or have the permissions
+
+    // 2. Check if they own that item, or have the permissions
     // TODO
 
-    // 3 - Delete it
+    // 3. Delete it
     return ctx.db.mutation.deleteItem({ where }, info);
   },
 
@@ -83,7 +84,7 @@ const Mutations = {
   },
 
   async signin(parent, args, ctx, info) {
-    // 1- check if there is a user with that email
+    // 1. check if there is a user with that email
     const user = await ctx.db.query.user(
       {
         where: { email: args.email.toLowerCase() },
@@ -94,22 +95,22 @@ const Mutations = {
       throw new Error(`No such user found for the email ${args.emai}`);
     }
 
-    // 2- check if their password is correct
+    // 2. check if their password is correct
     const valid = await bcrypt.compare(args.password, user.password);
     if (!valid) {
       throw new Error('Invalid Password!');
     }
 
-    // 3- Generate the JWT token
+    // 3. Generate the JWT token
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
-    // 4- Set the cookie with the token
+    // 4. Set the cookie with the token
     ctx.response.cookie('token', token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
     });
 
-    // 5- Return the user
+    // 5. Return the user
     return user;
   },
 
@@ -146,7 +147,7 @@ const Mutations = {
       ),
     });
 
-    // 4 Return the message
+    // 4. Return the message
     return { message: 'Thanks!' };
   },
 
@@ -191,8 +192,36 @@ const Mutations = {
       maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
     });
 
-    // 8 . Return the new user
+    // 8. Return the new user
     return updatedUser;
+  },
+
+  async updatePermissions(parent, args, ctx, info) {
+    // 1. Check if they are logged in
+    if (!ctx.request.userId) {
+      throw new Error('You must be logged!');
+    }
+
+    // 2. Query the current user
+    const currentUser = await ctx.db.query.user({ where: { id: ctx.request.userId } });
+
+    // 3. Check if they have permissions to do it
+    hasPermissions(ctx.request.user, ['ADMIN', 'PERMISSIONUPDATE']);
+
+    // 4. Update the permissions
+    await ctx.db.mutation.updateUser(
+      {
+        where: { id: args.userId },
+        data: {
+          permissions: {
+            set: args.permissions,
+          },
+        },
+      },
+      info
+    );
+
+    return currentUser;
   },
 };
 

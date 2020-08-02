@@ -75,4 +75,24 @@ const RESET_PASSWORD = gql`
   }
 `;
 
-export { CREATE_ITEM, UPDATE_ITEM, DELETE_ITEM, SIGN_UP, SIGN_IN, SIGN_OUT, REQUEST_RESET, RESET_PASSWORD };
+const UPDATE_PERMISSIONS = gql`
+  mutation updatePermissions($permissions: [Permission], $userId: ID!) {
+    updatePermissions(permissions: $permissions, userId: $userId) {
+      id
+      email
+      name
+    }
+  }
+`;
+
+export {
+  CREATE_ITEM,
+  UPDATE_ITEM,
+  DELETE_ITEM,
+  SIGN_UP,
+  SIGN_IN,
+  SIGN_OUT,
+  REQUEST_RESET,
+  RESET_PASSWORD,
+  UPDATE_PERMISSIONS,
+};
