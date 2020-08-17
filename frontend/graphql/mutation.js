@@ -85,14 +85,21 @@ const UPDATE_PERMISSIONS = gql`
   }
 `;
 
+const TOGGLE_CART = gql`
+  mutation {
+    toggleCart @client
+  }
+`;
+
 export {
   CREATE_ITEM,
-  UPDATE_ITEM,
   DELETE_ITEM,
-  SIGN_UP,
+  RESET_PASSWORD,
+  REQUEST_RESET,
   SIGN_IN,
   SIGN_OUT,
-  REQUEST_RESET,
-  RESET_PASSWORD,
+  SIGN_UP,
+  TOGGLE_CART,
+  UPDATE_ITEM,
   UPDATE_PERMISSIONS,
 };

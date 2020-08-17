@@ -58,4 +58,10 @@ const GET_ALL_USERS = gql`
   }
 `;
 
-export { GET_ITEMS, GET_ITEM, PAGINATION, CURRENT_USER, GET_ALL_USERS };
+const GET_LOCAL_STATE = gql`
+  {
+    cartOpen @client
+  }
+`;
+
+export { CURRENT_USER, GET_ALL_USERS, GET_ITEM, GET_ITEMS, GET_LOCAL_STATE, PAGINATION };

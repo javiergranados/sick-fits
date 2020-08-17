@@ -1,15 +1,22 @@
 import React from 'react';
-
-import CartStyles from './styles/CartStyles';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { GET_LOCAL_STATE } from '../graphql/query';
+import { TOGGLE_CART } from '../graphql/mutation';
 import { Supreme } from './styles/Supreme';
 import { CloseButton } from './styles/CloseButton';
 import { SickButton } from './styles/SickButton';
+import CartStyles from './styles/CartStyles';
 
 const Cart = () => {
+  const { data } = useQuery(GET_LOCAL_STATE);
+  const [toggleCart] = useMutation(TOGGLE_CART);
+
   return (
-    <CartStyles open>
+    <CartStyles open={data.cartOpen}>
       <header>
-        <CloseButton title="close">&times;</CloseButton>
+        <CloseButton title="close" onClick={toggleCart}>
+          &times;
+        </CloseButton>
         <Supreme>Your cart</Supreme>
         <p>You Have __ Items in your cart.</p>
       </header>
