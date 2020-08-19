@@ -4,7 +4,7 @@ import { CURRENT_USER } from '../graphql/query';
 
 const User = ({ children }) => {
   const { data } = useQuery(CURRENT_USER, { fetchPolicy: 'network-only' });
-  return children(data);
+  return children(data || {});
 };
 
 User.propTypes = {

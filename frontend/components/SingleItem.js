@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import Error from './Error';
 import * as S from './styles/SingleItem';
-
 import { GET_ITEM } from '../graphql/query';
 
 const SingleItem = ({ id }) => {

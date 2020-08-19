@@ -12,12 +12,12 @@ const Nav = () => {
 
   return (
     <User>
-      {data => (
+      {({ me }) => (
         <S.Nav>
           <Link href="/items">
             <a>Shop</a>
           </Link>
-          {data && data.me && (
+          {me && (
             <>
               <Link href="/sell">
                 <a>Sell</a>
@@ -34,7 +34,7 @@ const Nav = () => {
               </button>
             </>
           )}
-          {(!data || !data.me) && (
+          {!me && (
             <Link href="/signup">
               <a>Sign in</a>
             </Link>
