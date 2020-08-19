@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import formatMoney from '../utils/formatMoney';
+import RemoveFromCart from './RemoveFromCart';
 import * as S from './styles/CartItem';
 
-const CartItem = ({ cartItem: { item, quantity } }) => {
+const CartItem = ({ cartItem: { id, item, quantity } }) => {
   return (
     <S.CartItem>
       <img width="100" src={item.image} alt={item.title} />
@@ -16,6 +17,7 @@ const CartItem = ({ cartItem: { item, quantity } }) => {
           </em>
         </p>
       </div>
+      <RemoveFromCart id={id} />
     </S.CartItem>
   );
 };

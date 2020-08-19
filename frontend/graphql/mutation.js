@@ -100,10 +100,19 @@ const ADD_TO_CART = gql`
   }
 `;
 
+const REMOVE_FROM_CART = gql`
+  mutation removeFromCart($id: ID!) {
+    removeFromCart(id: $id) {
+      id
+    }
+  }
+`;
+
 export {
   ADD_TO_CART,
   CREATE_ITEM,
   DELETE_ITEM,
+  REMOVE_FROM_CART,
   RESET_PASSWORD,
   REQUEST_RESET,
   SIGN_IN,
