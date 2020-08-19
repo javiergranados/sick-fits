@@ -16,6 +16,7 @@ const RemoveFromCart = ({ id }) => {
 
   const [removeFromCart, { loading }] = useMutation(REMOVE_FROM_CART, {
     update,
+    optimisticResponse: { __typename: 'Mutation', removeFromCart: { __typename: 'CartItem', id } },
   });
 
   const handleClick = () => {
