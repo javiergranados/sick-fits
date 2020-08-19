@@ -4,7 +4,7 @@ import { ADD_TO_CART } from '../graphql/mutation';
 import { CURRENT_USER } from '../graphql/query';
 
 const AddToCart = ({ id }) => {
-  const [addToCart] = useMutation(ADD_TO_CART, {
+  const [addToCart, { loading }] = useMutation(ADD_TO_CART, {
     refetchQueries: [{ query: CURRENT_USER }],
   });
 
@@ -17,8 +17,8 @@ const AddToCart = ({ id }) => {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
-      Add To Cart 🛒
+    <button type="button" disabled={loading} onClick={handleClick}>
+      Add{loading && 'ing'} To Cart 🛒
     </button>
   );
 };

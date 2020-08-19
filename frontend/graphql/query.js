@@ -46,6 +46,13 @@ const CURRENT_USER = gql`
       cart {
         id
         quantity
+        item {
+          id
+          price
+          image
+          title
+          description
+        }
       }
     }
   }
