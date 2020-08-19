@@ -6,8 +6,16 @@ import { CURRENT_USER } from '../graphql/query';
 import * as S from './styles/RemoveFromCart';
 
 const RemoveFromCart = ({ id }) => {
+  const update = (cache, { data }) => {
+    const { me } = cache.readQuery({ query: CURRENT_USER });
+    cache.writeQuery({
+      query: CURRENT_USER,
+      data: { me: { ...me, cart: me.cart.filter(item => item.id !== data.removeFromCart.id) } },
+    });
+  };
+
   const [removeFromCart, { loading }] = useMutation(REMOVE_FROM_CART, {
-    refetchQueries: [{ query: CURRENT_USER }],
+    update,
   });
 
   const handleClick = () => {
