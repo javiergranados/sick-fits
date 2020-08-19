@@ -43,6 +43,10 @@ const CURRENT_USER = gql`
       name
       email
       permissions
+      cart {
+        id
+        quantity
+      }
     }
   }
 `;
