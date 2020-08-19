@@ -5,14 +5,14 @@ import { TOGGLE_CART } from '../graphql/mutation';
 import { Supreme } from './styles/Supreme';
 import { CloseButton } from './styles/CloseButton';
 import { SickButton } from './styles/SickButton';
-import CartStyles from './styles/CartStyles';
+import * as S from './styles/Cart';
 
 const Cart = () => {
   const { data } = useQuery(GET_LOCAL_STATE);
   const [toggleCart] = useMutation(TOGGLE_CART);
 
   return (
-    <CartStyles open={data.cartOpen}>
+    <S.Cart open={data.cartOpen}>
       <header>
         <CloseButton title="close" onClick={toggleCart}>
           &times;
@@ -24,7 +24,7 @@ const Cart = () => {
         <p>$10.10</p>
         <SickButton>Checkout</SickButton>
       </footer>
-    </CartStyles>
+    </S.Cart>
   );
 };
 
