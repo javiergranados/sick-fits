@@ -11,7 +11,7 @@ const AnimationStyles = styled.span`
   }
   /* Initial State of the entered Dot */
   .count-enter {
-    transform: scale(4) rotateX(0.5turn);
+    transform: rotateX(0.5turn);
   }
   .count-enter-active {
     transform: rotateX(0);
@@ -22,7 +22,7 @@ const AnimationStyles = styled.span`
     transform: rotateX(0);
   }
   .count-exit-active {
-    transform: scale(4) rotateX(0.5turn);
+    transform: rotateX(0.5turn);
   }
 `;
 
