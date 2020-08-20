@@ -3,6 +3,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import Nav from './Nav';
 import Cart from './Cart';
+import Search from './Search';
 import * as S from './styles/Header';
 
 Router.onRouteChangeStart = () => {
@@ -28,7 +29,7 @@ const Header = () => {
         <Nav />
       </div>
       <div className="sub-bar">
-        <p>Search</p>
+        <Search />
       </div>
       <Cart />
     </S.Header>

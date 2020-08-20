@@ -75,4 +75,14 @@ const GET_LOCAL_STATE = gql`
   }
 `;
 
-export { CURRENT_USER, GET_ALL_USERS, GET_ITEM, GET_ITEMS, GET_LOCAL_STATE, PAGINATION };
+const SEARCH_ITEMS = gql`
+  query($searchTerm: String!) {
+    items(where: { OR: [{ title_contains: $searchTerm }, { description_contains: $searchTerm }] }) {
+      id
+      image
+      title
+    }
+  }
+`;
+
+export { CURRENT_USER, GET_ALL_USERS, GET_ITEM, GET_ITEMS, GET_LOCAL_STATE, PAGINATION, SEARCH_ITEMS };
