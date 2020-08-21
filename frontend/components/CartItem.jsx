@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import formatMoney from '../utils/formatMoney';
 import RemoveFromCart from './RemoveFromCart';

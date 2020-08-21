@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import StripeCheckout from 'react-stripe-checkout';
 import User from './User';

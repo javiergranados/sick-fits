@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import User from './User';
 import CartItem from './CartItem';

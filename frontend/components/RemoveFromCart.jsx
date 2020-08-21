@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import { REMOVE_FROM_CART } from '../graphql/mutation';

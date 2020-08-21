@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_TO_CART } from '../graphql/mutation';
 import { CURRENT_USER } from '../graphql/query';
