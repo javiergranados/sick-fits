@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import User from './User';
 import CartItem from './CartItem';
+import TakeMyMoney from './TakeMyMoney';
 import { GET_LOCAL_STATE } from '../graphql/query';
 import { TOGGLE_CART } from '../graphql/mutation';
 import { Supreme } from './styles/Supreme';
@@ -39,7 +40,9 @@ const Cart = () => {
             </ul>
             <footer>
               <p>{formatMoney(calcTotalPrice(me.cart))}</p>
-              <SickButton>Checkout</SickButton>
+              <TakeMyMoney>
+                <SickButton>Checkout</SickButton>
+              </TakeMyMoney>
             </footer>
           </S.Cart>
         );
