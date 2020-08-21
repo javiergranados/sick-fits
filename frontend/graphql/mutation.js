@@ -108,9 +108,24 @@ const REMOVE_FROM_CART = gql`
   }
 `;
 
+const CREATE_ORDER = gql`
+  mutation($token: String!) {
+    createOrder(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        title
+      }
+    }
+  }
+`;
+
 export {
   ADD_TO_CART,
   CREATE_ITEM,
+  CREATE_ORDER,
   DELETE_ITEM,
   REMOVE_FROM_CART,
   RESET_PASSWORD,

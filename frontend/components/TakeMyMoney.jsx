@@ -1,6 +1,9 @@
 import React from 'react';
+import { useMutation } from '@apollo/react-hooks';
 import StripeCheckout from 'react-stripe-checkout';
 import User from './User';
+import { CREATE_ORDER } from '../graphql/mutation';
+import { CURRENT_USER } from '../graphql/query';
 import calcTotalPrice from '../utils/calcTotalPrice';
 import totalItems from '../utils/totalItems';
 
@@ -8,8 +11,17 @@ const publicKey =
   'pk_test_51HIWY9BLGmaX55y0X0luZw22F8iv6448gyDQMad7pznmWFpjr0F2MYs7JPpklPoQBHGXMVrzszc4kKxRRyk1Kp0W00Tn2SzPfu';
 
 const TakeMyMoney = ({ children }) => {
-  const onToken = res => {
-    console.log(res.id);
+  const [createOrder] = useMutation(CREATE_ORDER, {
+    refetchQueries: [{ query: CURRENT_USER }],
+  });
+
+  const onToken = async res => {
+    try {
+      const { data } = await createOrder({ variables: { token: res.id } });
+      console.log('data', data);
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
