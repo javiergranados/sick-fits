@@ -1,5 +1,6 @@
 import { useLazyQuery } from '@apollo/react-hooks';
 import debounce from 'lodash.debounce';
+import { useCallback } from 'react';
 import { useCombobox, resetIdCounter } from 'downshift';
 import { useRouter } from 'next/router';
 import { SEARCH_ITEMS } from '../graphql/query';
@@ -34,12 +35,15 @@ const Search = () => {
     onSelectedItemChange: routeToItem,
   });
 
-  const searchItems = debounce(
-    value =>
-      getItems({
-        variables: { searchTerm: value },
-      }),
-    350
+  const searchItems = useCallback(
+    debounce(
+      value =>
+        getItems({
+          variables: { searchTerm: value },
+        }),
+      350
+    ),
+    []
   );
 
   const handleChange = event => {
