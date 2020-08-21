@@ -85,4 +85,26 @@ const SEARCH_ITEMS = gql`
   }
 `;
 
-export { CURRENT_USER, GET_ALL_USERS, GET_ITEM, GET_ITEMS, GET_LOCAL_STATE, PAGINATION, SEARCH_ITEMS };
+const SINGLE_ORDER = gql`
+  query($id: ID!) {
+    order(id: $id) {
+      id
+      charge
+      total
+      createdAt
+      user {
+        id
+      }
+      items {
+        id
+        title
+        description
+        price
+        image
+        quantity
+      }
+    }
+  }
+`;
+
+export { CURRENT_USER, GET_ALL_USERS, GET_ITEM, GET_ITEMS, GET_LOCAL_STATE, PAGINATION, SEARCH_ITEMS, SINGLE_ORDER };

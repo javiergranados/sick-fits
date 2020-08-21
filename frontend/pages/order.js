@@ -1,10 +1,10 @@
-// import CreateItem from '../components/CreateItem';
+import Order from '../components/Order';
 import PleaseSignIn from '../components/PleaseSignIn';
 
-const Order = () => (
+const OrderPage = () => (
   <PleaseSignIn>
-    <p>Single order page</p>
+    <Order />
   </PleaseSignIn>
 );
 
-export default Order;
+export default OrderPage;

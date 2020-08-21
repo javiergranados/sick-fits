@@ -1,5 +1,7 @@
-import { useMutation } from '@apollo/react-hooks';
+import NProgress from 'nprogress';
 import StripeCheckout from 'react-stripe-checkout';
+import { useMutation } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 import User from './User';
 import { CREATE_ORDER } from '../graphql/mutation';
 import { CURRENT_USER } from '../graphql/query';
@@ -10,14 +12,20 @@ const publicKey =
   'pk_test_51HIWY9BLGmaX55y0X0luZw22F8iv6448gyDQMad7pznmWFpjr0F2MYs7JPpklPoQBHGXMVrzszc4kKxRRyk1Kp0W00Tn2SzPfu';
 
 const TakeMyMoney = ({ children }) => {
+  const router = useRouter();
   const [createOrder] = useMutation(CREATE_ORDER, {
     refetchQueries: [{ query: CURRENT_USER }],
   });
 
   const onToken = async res => {
     try {
+      NProgress.start();
       const { data } = await createOrder({ variables: { token: res.id } });
-      console.log('data', data);
+
+      router.push({
+        pathname: '/order',
+        query: { id: data.createOrder.id },
+      });
     } catch (err) {
       alert(err.message);
     }
