@@ -303,7 +303,7 @@ const Mutations = {
     );
   },
 
-  async createOrder(parent, args, ctx, info) {
+  async createOrder(parent, args, ctx) {
     // 1. Query the current user and make sure they are signed in
     if (!ctx.request.userId) {
       throw new Error('You must be signed in to complete the order.');
