@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
+const stripe = require('../stripe');
 const { transport, makeANiceEmail } = require('../../mail');
 const { hasPermissions } = require('../utils');
 
@@ -300,6 +301,70 @@ const Mutations = {
       },
       info
     );
+  },
+
+  async createOrder(parent, args, ctx, info) {
+    // 1. Query the current user and make sure they are signed in
+    if (!ctx.request.userId) {
+      throw new Error('You must be signed in to complete the order.');
+    }
+    const user = await ctx.db.query.user(
+      { where: { id: ctx.request.userId } },
+      `{
+        id
+        name
+        email
+        cart {
+          id
+          quantity
+          item { title price id description image largeImage }
+        }
+      }`
+    );
+
+    // 2. Recalculate the total for the price
+    const amount = user.cart.reduce((prev, next) => prev + next.item.price * next.quantity, 0);
+
+    // 3. Create the stripe charge (turn token into $$$)
+    const charge = await stripe.charges.create({
+      amount,
+      currency: 'USD',
+      source: args.token,
+    });
+
+    // 4. Convert the CartItems to OrderItems
+    const orderItems = user.cart.map(cartItem => {
+      const orderItem = {
+        ...cartItem.item,
+        quantity: cartItem.quantity,
+        user: {
+          connect: { id: ctx.request.userId },
+        },
+      };
+      delete orderItem.id;
+      return orderItem;
+    });
+
+    // 5. Create the order
+    const order = await ctx.db.mutation.createOrder({
+      data: {
+        total: charge.amount,
+        charge: charge.id,
+        items: { create: orderItems },
+        user: { connect: { id: ctx.request.userId } },
+      },
+    });
+
+    // 6. Clean up - clear the user cart, delete CartItems
+    const cartItemsIds = user.cart.map(cartItem => cartItem.id);
+    await ctx.db.mutation.deleteManyCartItems({
+      where: {
+        id_in: cartItemsIds,
+      },
+    });
+
+    // 7. Return the order to the client
+    return order;
   },
 };
 
