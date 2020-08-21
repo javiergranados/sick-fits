@@ -11,10 +11,12 @@ const Query = {
   itemsConnection: forwardTo('db'),
 
   me(parent, args, ctx, info) {
-    // check if there is a current user id
+    // 1. Check if there is a current user id
     if (!ctx.request.userId) {
       return null;
     }
+
+    // 2. Return the user
     return ctx.db.query.user(
       {
         where: { id: ctx.request.userId },
@@ -24,15 +26,15 @@ const Query = {
   },
 
   users(parent, args, ctx, info) {
-    // Check if they are logged in
+    // 1. Check if they are logged in
     if (!ctx.request.userId) {
       throw new Error('You must be logged in to do that!');
     }
 
-    // Check if the user has the permissions to query all the users
+    // 2. Check if the user has the permissions to query all the users
     hasPermissions(ctx.request.user, ['ADMIN', 'PERMISSIONUPDATE']);
 
-    // If they dos, query all the users
+    // 3. If they do, query all the users
     return ctx.db.query.users({}, info);
   },
 
@@ -59,6 +61,29 @@ const Query = {
 
     // 4. Return the order
     return order;
+  },
+
+  orders(parent, args, ctx, info) {
+    // 1. Check if they are logged in
+    if (!ctx.request.userId) {
+      throw new Error('You must be logged in to do that!');
+    }
+
+    // 2. Check if the user has the permissions to query all the orders
+    const hasPermissionToSeeOrders = ctx.request.user.permissions.includes('ADMIN');
+    if (!hasPermissionToSeeOrders) {
+      throw new Error('You cant see this buddd');
+    }
+
+    // 3. Query all the orders
+    return ctx.db.query.orders(
+      {
+        where: {
+          user: { id: ctx.request.userId },
+        },
+      },
+      info
+    );
   },
 };
 
