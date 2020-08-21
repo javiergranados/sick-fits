@@ -107,4 +107,32 @@ const SINGLE_ORDER = gql`
   }
 `;
 
-export { CURRENT_USER, GET_ALL_USERS, GET_ITEM, GET_ITEMS, GET_LOCAL_STATE, PAGINATION, SEARCH_ITEMS, SINGLE_ORDER };
+const GET_ALL_ORDERS = gql`
+  {
+    orders(orderBy: createdAt_DESC) {
+      id
+      total
+      createdAt
+      items {
+        id
+        title
+        price
+        description
+        quantity
+        image
+      }
+    }
+  }
+`;
+
+export {
+  CURRENT_USER,
+  GET_ALL_ORDERS,
+  GET_ALL_USERS,
+  GET_ITEM,
+  GET_ITEMS,
+  GET_LOCAL_STATE,
+  PAGINATION,
+  SEARCH_ITEMS,
+  SINGLE_ORDER,
+};
