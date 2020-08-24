@@ -9,10 +9,12 @@ const Columns = styled.div`
   grid-gap: 20px;
 `;
 
-export default () => (
+const SignupPage = () => (
   <Columns>
     <Signup />
     <Signin />
     <RequestReset />
   </Columns>
 );
+
+export default SignupPage;

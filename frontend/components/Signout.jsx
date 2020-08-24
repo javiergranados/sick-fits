@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { CURRENT_USER } from '../graphql/query';
 import { SIGN_OUT } from '../graphql/mutation';
 
-export default () => {
+const Signout = () => {
   const router = useRouter();
   const [signOut] = useMutation(SIGN_OUT, { refetchQueries: [{ query: CURRENT_USER }] });
 
@@ -22,3 +22,5 @@ export default () => {
     </button>
   );
 };
+
+export default Signout;

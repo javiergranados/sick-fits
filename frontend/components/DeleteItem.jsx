@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { DELETE_ITEM } from '../graphql/mutation';
 import { GET_ITEMS } from '../graphql/query';
 
-const CreateItem = ({ children, id }) => {
+const DeleteItem = ({ children, id }) => {
   const update = (cache, { data }) => {
     const { items } = cache.readQuery({ query: GET_ITEMS });
     cache.writeQuery({
@@ -42,4 +42,4 @@ const CreateItem = ({ children, id }) => {
   );
 };
 
-export default CreateItem;
+export default DeleteItem;
