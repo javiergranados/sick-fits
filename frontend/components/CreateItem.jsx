@@ -45,7 +45,7 @@ const CreateItem = () => {
   };
 
   return (
-    <S.Form onSubmit={handleSubmit}>
+    <S.Form onSubmit={handleSubmit} data-test="form">
       <Error error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="file">
@@ -55,15 +55,16 @@ const CreateItem = () => {
         {image && <img widt="200" src={image} alt="Upload Preview" />}
         <label htmlFor="title">
           Title
-          <input type="text" name="title" placeholder="Title" required value={title} onChange={setTitle} />
+          <input id="title" type="text" name="title" placeholder="Title" required value={title} onChange={setTitle} />
         </label>
         <label htmlFor="price">
           Price
-          <input type="number" name="price" placeholder="Price" required value={price} onChange={setPrice} />
+          <input id="price" type="number" name="price" placeholder="Price" required value={price} onChange={setPrice} />
         </label>
         <label htmlFor="description">
           Description
           <textarea
+            id="description"
             name="description"
             placeholder="Description"
             required
