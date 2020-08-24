@@ -16,7 +16,7 @@ const Pagination = ({ page }) => {
   const pages = Math.ceil(count / perPage);
 
   return (
-    <S.Pagination>
+    <S.Pagination data-test="pagination">
       <Head>
         <title>
           Sick fits! | Page {page} of {pages}
@@ -33,7 +33,7 @@ const Pagination = ({ page }) => {
         </a>
       </Link>
       <p>
-        Page {page} of {pages}
+        Page {page} of <span className="totalPages">{pages}</span>
       </p>
       <p>{count} Items Total</p>
       <Link

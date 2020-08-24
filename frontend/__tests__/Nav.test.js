@@ -47,7 +47,7 @@ async function getNav(mock) {
   return wrapper.find('ul[data-test="nav"]');
 }
 
-describe('<Nav/>', () => {
+describe('<Nav />', () => {
   it('renders a minimal nav when signed out', async () => {
     const nav = await getNav(notSignedInMocks);
 
