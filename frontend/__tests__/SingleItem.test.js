@@ -27,7 +27,7 @@ const resultError = {
   errors: [{ message: 'Items Not Found!' }],
 };
 
-describe('<SingleItem/>', () => {
+describe('<SingleItem />', () => {
   it('renders with proper data', async () => {
     mocks = [
       {
