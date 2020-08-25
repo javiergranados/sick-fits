@@ -22,7 +22,7 @@ const RequestReset = () => {
   };
 
   return (
-    <S.Form method="post" onSubmit={handleSubmit}>
+    <S.Form method="post" onSubmit={handleSubmit} data-test="form">
       <Error error={error} />
       {!error && !loading && called && <p>Success! Check your email for a reset link!</p>}
       <fieldset disabled={loading} aria-busy={loading}>
