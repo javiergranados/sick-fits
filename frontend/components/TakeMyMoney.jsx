@@ -33,9 +33,9 @@ const TakeMyMoney = ({ children }) => {
 
   return (
     <User>
-      {({ me }) => {
-        if (!me) {
-          return children;
+      {({ me }, loading) => {
+        if (!me || loading) {
+          return null;
         }
         return (
           <StripeCheckout
