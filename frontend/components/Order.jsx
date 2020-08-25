@@ -14,7 +14,7 @@ const Order = () => {
 
   useEffect(() => {
     getOrder({
-      variables: { id: router.query.id },
+      variables: { id: router ? router.query.id : null },
     });
   }, []);
 
