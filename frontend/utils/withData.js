@@ -4,7 +4,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
-import { endpoint } from '../config';
+import { endpoint, prodEndpoint } from '../config';
 import { GET_LOCAL_STATE } from '../graphql/query';
 
 function createClient() {
@@ -21,7 +21,7 @@ function createClient() {
       }
     }),
     new HttpLink({
-      uri: process.env.NODE_ENV === 'development' ? endpoint : endpoint,
+      uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
       credentials: 'include',
     }),
   ]);
