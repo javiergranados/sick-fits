@@ -39,7 +39,7 @@ const fakeOrder = () => ({
   charge: 'ch_123',
   total: 40000,
   items: [fakeOrderItem(), fakeOrderItem()],
-  createdAt: '2018-04 - 06T19: 24: 16.000Z',
+  createdAt: '2018-04-06T19:24:16.000Z',
   user: fakeUser(),
 });
 

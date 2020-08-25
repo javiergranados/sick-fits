@@ -1,22 +1,16 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 import { SINGLE_ORDER } from '../graphql/query';
 import Error from './Error';
 import formatMoney from '../utils/formatMoney';
 import * as S from './styles/Order';
 
-const Order = () => {
-  const router = useRouter();
-  const [getOrder, { data, loading, error }] = useLazyQuery(SINGLE_ORDER);
-
-  useEffect(() => {
-    getOrder({
-      variables: { id: router ? router.query.id : null },
-    });
-  }, []);
+const Order = ({ id }) => {
+  const { loading, error, data } = useQuery(SINGLE_ORDER, {
+    variables: { id },
+  });
 
   if (error) {
     return <Error error={error} />;
@@ -27,7 +21,7 @@ const Order = () => {
 
   const { order } = data;
   return (
-    <S.Order>
+    <S.Order data-test="order">
       <Head>
         <title>Sick Fits - Order {order.id}</title>
       </Head>
@@ -67,6 +61,10 @@ const Order = () => {
       </div>
     </S.Order>
   );
+};
+
+Order.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default Order;
